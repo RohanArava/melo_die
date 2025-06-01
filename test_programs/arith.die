@@ -1,0 +1,11 @@
+function ternary(cond) int {
+    return cond?110:111
+}
+
+function expressions() int {
+    return -2*3
+}
+
+function main() int {
+    return -expressions()
+}
