@@ -1,4 +1,4 @@
-use crate::lexer::token::{ Token, TokenType }; // Adjust path as needed
+use crate::lexer::token::{ Token, TokenType }; 
 use crate::errors::lex_errors::LexError;
 
 pub struct Lexer {
@@ -31,7 +31,7 @@ impl Lexer {
                 Err(err) => return Err(err),
             }
         }
-        // Add EOF token
+
         tokens.push(Token::new(TokenType::Eof, "".into(), self.line, self.column));
         Ok(tokens)
     }
@@ -63,7 +63,6 @@ impl Lexer {
     fn scan_token(&mut self) -> Result<Option<Token>, LexError> {
         let ch = self.advance();
         match ch {
-            // Whitespace and newlines
             ' ' | '\r' | '\t' => Ok(None),
             '\n' => {
                 self.line += 1;
@@ -71,7 +70,6 @@ impl Lexer {
                 Ok(None)
             }
 
-            // Single and double character tokens
             '(' => Ok(Some(self.make_token(TokenType::LeftParen))),
             ')' => Ok(Some(self.make_token(TokenType::RightParen))),
             '{' => Ok(Some(self.make_token(TokenType::LeftBrace))),
@@ -161,6 +159,8 @@ impl Lexer {
             "while" => TokenType::While,
             "for" => TokenType::For,
             "return" => TokenType::Return,
+            "int" => TokenType::Int,
+            "void" => TokenType::Void,
             _ => TokenType::Identifier(value.clone()),
         };
 

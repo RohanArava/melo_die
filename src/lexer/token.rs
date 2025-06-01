@@ -6,7 +6,7 @@ pub enum TokenType {
     LeftBrace,      // {
     RightBrace,     // }
     Semicolon,      // ;
-    Comma,          // =
+    Comma,          // ,
     Equal,          // =
     Plus,           // +
     Minus,          // -
@@ -46,11 +46,14 @@ pub enum TokenType {
     For,
     Return,
 
+    Int,
+    Void,
+
     // End of file
     Eof,
 }
 
-#[derive(Debug)]
+#[derive(Debug,Clone)]
 pub struct Token {
     pub token_type: TokenType,
     pub lexeme: String,
