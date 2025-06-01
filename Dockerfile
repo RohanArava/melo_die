@@ -26,8 +26,10 @@ RUN apt-get update && apt-get install -y \
 
 
 # Set LLVM_DIR for CMake to find
-ENV LLVM_DIR=/usr/lib/llvm-20/lib/cmake/llvm
+ENV LLVM_DIR=/usr/lib/llvm-18/lib/cmake/llvm
 
 ENV PATH="/root/.cargo/bin:${PATH}"
+
+ENV PATH="/usr/lib/llvm-18/bin:${PATH}"
 
 WORKDIR /workspace
