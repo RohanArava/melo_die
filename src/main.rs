@@ -17,5 +17,15 @@ fn main() {
     
     let mut parser = parser::parser::Parser::new(&tokens);
     let program = parser.parse().unwrap();
-    println!("{:#?}", program);
+   
+    let mut analyzer = parser::semantic::SemanticAnalyzer::new();
+    match analyzer.analyze(&program) {
+        Ok(()) => println!("Program is semantically valid!"),
+        Err(errors) => {
+            for error in errors {
+                println!("Error: {:?}", error);
+            }
+            return;
+        }
+    }
 }
