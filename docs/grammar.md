@@ -6,12 +6,12 @@ Features to include:
 - Initially only needs to support integers
 - Supports functions
 - Supports if-else, for and while loops.
-- Supports unary and binary expressions.
+- Supports unary, binary and ternary expressions.
 - Supports variable assignment and declaration as statements
 
 Example: (Todo: Write a better example)
 ```
-function name(arg1, arg2, arg3){
+function name(arg1, arg2, arg3) int {
     let sum = 0
     for let i = arg1; i <= arg2; i=i+1 {
         sum = sum + arg3
@@ -31,19 +31,20 @@ function name(arg1, arg2, arg3){
 
 This is trying to make whitespace and newline insignificant
 
-`function name(arg1, arg2, arg3){ let sum = 0 for let i = arg1; i <= arg2; i=i+1 { sum = sum + arg3 } if sum > 0 { return sum } else { let i = 0 sum = 0 while i < arg2 { sum = sum + arg3 } return sum }}`
+`function name(arg1, arg2, arg3) int { let sum = 0 for let i = arg1; i <= arg2; i=i+1 { sum = sum + arg3 } if sum > 0 { return sum } else { let i = 0 sum = 0 while i < arg2 { sum = sum + arg3 } return sum }}`
 
 Trying to define the grammar in BNF:
 
 ```
-<PROGRAM> ::= <STATEMENT>*
+<PROGRAM> ::= <FUNCTION_DECLARATION>*
+
+<FUNCTION_DECLARATION> ::= "function" <IDENTIFIER> "(" <PARAM_LIST>? ")" <RETURN_TYPE> "{" <STATEMENT>* "}"
 
 <STATEMENT> ::= <VARIABLE_DECLARATION>
               | <ASSIGNMENT>
               | <IF_STATEMENT>
               | <WHILE_STATEMENT>
               | <FOR_STATEMENT>
-              | <FUNCTION_DECLARATION>
               | <RETURN_STATEMENT>
               | <EXPRESSION>
 
@@ -59,11 +60,9 @@ Trying to define the grammar in BNF:
 
 <FOR_STATEMENT> ::= "for" <VARIABLE_DECLARATION> ";" <EXPRESSION> ";" <ASSIGNMENT> "{" <STATEMENT>* "}"
 
-<FUNCTION_DECLARATION> ::= "function" <IDENTIFIER> "(" <PARAM_LIST>? ")" "{" <STATEMENT>* "}"
-
 <PARAM_LIST> ::= <IDENTIFIER> ("," <IDENTIFIER>)*
 
-<RETURN_STATEMENT> ::= "return" <EXPRESSION>
+<RETURN_STATEMENT> ::= "return" <EXPRESSION> | "return void"
 
 <EXPRESSION> ::= <CONSTANT>
               | <IDENTIFIER>
@@ -86,6 +85,8 @@ Trying to define the grammar in BNF:
                     | "&&" | "||"
 
 <IDENTIFIER> ::= <LETTER> (<LETTER> | <DIGIT> | "_")*
+
+<RETURN_TYPE> ::= "int" | "void"
 
 <CONSTANT> ::= <DIGIT>+
 
