@@ -43,10 +43,17 @@ Language syntax is intentionally minimal and straightforward, inspired by langua
 Grammar snapshot (simplified BNF):
 
 ```
-<PROGRAM> ::= <STATEMENT>*
-<STATEMENT> ::= <VARIABLE_DECLARATION> | <ASSIGNMENT> | <IF_STATEMENT> |
-                <WHILE_STATEMENT> | <FOR_STATEMENT> | <FUNCTION_DECLARATION> |
-                <RETURN_STATEMENT> | <EXPRESSION>
+<PROGRAM> ::= <FUNCTION_DECLARATION>*  
+  
+<FUNCTION_DECLARATION> ::= "function" <IDENTIFIER> "(" <PARAM_LIST>? ")" <RETURN_TYPE> "{" <STATEMENT>* "}"  
+  
+<STATEMENT> ::= <VARIABLE_DECLARATION>
+              | <ASSIGNMENT>
+              | <IF_STATEMENT>
+              | <WHILE_STATEMENT>
+              | <FOR_STATEMENT>
+              | <RETURN_STATEMENT>
+              | <EXPRESSION>
 ...
 ```
 
