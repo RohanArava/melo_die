@@ -1,7 +1,5 @@
 # Melodie
 
-My attempt at making a compiler
-
 A minimal, experimental programming language and compiler focused on simplicity and clean grammar design. Written from scratch with the goal of being easy to parse, extend, and reason about.
 
 ---
